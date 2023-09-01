@@ -1,17 +1,27 @@
 import { Dialog, DialogContent } from "@radix-ui/react-dialog";
 import { RefreshIcon, SearchIcon } from "../icons";
-import { useState } from "react";
+import { useCallback, useState } from "react";
+import { MarkdownParser } from "./markdown-parser";
+import { markdown } from "./markdown";
 
 export default function Search() {
   const [isFirstSearch, setIsFirstSearch] = useState(false);
+
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const search = useCallback((e: any) => {
+    e.preventDefault();
+    setIsFirstSearch(false);
+  }, []);
+
   return (
     <Dialog open>
       <DialogContent className="outpost-search">
         <SearchHeader
+          search={search}
           isFirstSearch={isFirstSearch}
           resetSession={() => setIsFirstSearch(true)}
         />
-        <SearchBody />
+        <SearchBody isFirstSearch={isFirstSearch} />
         <SearchFooter isFirstSearch={isFirstSearch} />
       </DialogContent>
     </Dialog>
@@ -22,16 +32,23 @@ function SearchFooter(props: { isFirstSearch: boolean }) {
   return (
     !props?.isFirstSearch && (
       <div className="footer">
-        <input placeholder="Ask a question..." />
+        <input autoFocus placeholder="Ask a question..." />
       </div>
     )
   );
 }
 
-function SearchBody() {
+function SearchBody(props: { isFirstSearch: boolean }) {
   return (
     <div className="body">
-      <div className="messages">messages will go here</div>
+      {!props?.isFirstSearch && (
+        <div className="messages">
+          <p className="user">What is use callback is react?</p>
+          <p className="agent">
+            <MarkdownParser answer={markdown} />
+          </p>
+        </div>
+      )}
     </div>
   );
 }
@@ -39,13 +56,17 @@ function SearchBody() {
 function SearchHeader(props: {
   isFirstSearch?: boolean;
   resetSession: () => void;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  search: any;
 }) {
   return (
     <div className="header">
       {props?.isFirstSearch ? (
         <>
           <SearchIcon className="icon" />
-          <input autoFocus />
+          <form onSubmit={props.search}>
+            <input autoFocus />
+          </form>
         </>
       ) : (
         <>
