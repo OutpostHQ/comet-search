@@ -1,0 +1,75 @@
+/* reset */
+.outpost-search *,
+.outpost-search *::after,
+.outpost-search *::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+/* variables */
+
+.outpost-search {
+  --width: 720px;
+  --height: 540px;
+  --background: var(--op-surface);
+  --header-height: 52px;
+  --body-height: 52px;
+}
+
+/* styles */
+
+.outpost-search {
+  width: var(--width);
+  height: var(--height);
+  margin: 0 auto;
+  border: 1px solid var(--op-border);
+  box-shadow: var(--op-shadow-050);
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+
+.outpost-search .header {
+  border-bottom: 1px solid var(--op-border);
+  height: var(--header-height);
+  gap: 0.75rem;
+  align-items: center;
+  padding: 0 1rem;
+  position: relative;
+
+  display: grid;
+  grid-template-columns: max-content 1fr;
+}
+
+.outpost-search .header input {
+  border: none;
+  height: 100%;
+  width: 100%;
+  inset: 0;
+  z-index: 1;
+}
+
+.outpost-search .header .icon {
+  z-index: 1;
+}
+
+.outpost-search .header input:active,
+.outpost-search .header input:focus {
+  outline: none;
+}
+
+.outpost-search .header .title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.outpost-search .header .refresh {
+  margin-left: auto;
+  border: none;
+  background: transparent;
+}
+
+.outpost-search .body {
+}
