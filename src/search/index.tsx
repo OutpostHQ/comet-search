@@ -3,31 +3,46 @@ import { RefreshIcon, SearchIcon } from "../icons";
 import { useState } from "react";
 
 export default function Search() {
-  const [isSearching, setIsSearching] = useState(false);
+  const [isFirstSearch, setIsFirstSearch] = useState(false);
   return (
     <Dialog open>
       <DialogContent className="outpost-search">
         <SearchHeader
-          isSearching={isSearching}
-          resetSession={() => setIsSearching(true)}
+          isFirstSearch={isFirstSearch}
+          resetSession={() => setIsFirstSearch(true)}
         />
         <SearchBody />
+        <SearchFooter isFirstSearch={isFirstSearch} />
       </DialogContent>
     </Dialog>
   );
 }
 
+function SearchFooter(props: { isFirstSearch: boolean }) {
+  return (
+    !props?.isFirstSearch && (
+      <div className="footer">
+        <input placeholder="Ask a question..." />
+      </div>
+    )
+  );
+}
+
 function SearchBody() {
-  return <div className="body">SearchBody</div>;
+  return (
+    <div className="body">
+      <div className="messages">messages will go here</div>
+    </div>
+  );
 }
 
 function SearchHeader(props: {
-  isSearching?: boolean;
+  isFirstSearch?: boolean;
   resetSession: () => void;
 }) {
   return (
     <div className="header">
-      {props?.isSearching ? (
+      {props?.isFirstSearch ? (
         <>
           <SearchIcon className="icon" />
           <input autoFocus />

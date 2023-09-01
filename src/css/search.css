@@ -28,7 +28,11 @@
   box-shadow: var(--op-shadow-050);
   border-radius: 0.5rem;
   overflow: hidden;
+  display: grid;
+  grid-template-rows: max-content 1fr;
 }
+
+/***************** HEADER ****************************/
 
 .outpost-search .header {
   border-bottom: 1px solid var(--op-border);
@@ -37,7 +41,6 @@
   align-items: center;
   padding: 0 1rem;
   position: relative;
-
   display: grid;
   grid-template-columns: max-content 1fr;
 }
@@ -70,6 +73,32 @@
   border: none;
   background: transparent;
 }
+.outpost-search .header .refresh:focus {
+  outline: none;
+}
+
+/***************** BODY ****************************/
 
 .outpost-search .body {
+  padding: 1rem;
+  height: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/***************** FOOTER ****************************/
+
+.outpost-search .footer {
+  padding: 1.2rem 1rem;
+}
+
+.outpost-search .footer input {
+  width: 100%;
+  border: 1px solid var(--op-border);
+  height: 2.25rem;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
+}
+.outpost-search .footer input:focus {
+  outline: none;
 }
