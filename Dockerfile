@@ -19,6 +19,4 @@ COPY --from=base /app/package.json ./package.json
 
 EXPOSE 3000
 
-ENV NODE_ENV=production
-
 CMD ["pnpm", "dev"]
