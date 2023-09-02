@@ -35,5 +35,3 @@ jobs:
           labels: ${{ steps.metadata.outputs.labels }}
           cache: true
           cache-repository: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}/cache
-          secrets: |
-            GIT_AUTH_TOKEN=${{ secrets.ORG_REPO_TOKEN }}
