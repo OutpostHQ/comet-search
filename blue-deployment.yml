@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: blue-comet-search
+  namespace: outpost   
+  labels:
+    app: blue-comet-search
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: blue-comet-search
+  template:
+    metadata:
+      labels:
+        app: blue-comet-search
+    spec:
+      imagePullSecrets:
+        - name: regcred
+      containers:
+        - name: comet-test
+          image: ghcr.io/outpostlabs/comet-search:latest
+          ports:
+          - containerPort: 3000
+            protocol: TCP
+          imagePullPolicy: Always
+          command: ["pnpm"]
+          args: ["dev"]
