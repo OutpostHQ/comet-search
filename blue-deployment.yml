@@ -30,5 +30,5 @@ spec:
             - name: INFISICAL_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: infisical-token-comet
+                  name: infisical-token-comet-search
                   key: INFISICAL_TOKEN 
