@@ -13,10 +13,16 @@ COPY . .
 RUN pnpm build
 
 FROM base AS production
+RUN apk add --no-cache bash curl && curl -1sLf \
+'https://dl.cloudsmith.io/public/infisical/infisical-cli/setup.alpine.sh' | bash \
+&& apk add infisical
+
+ENV INFISICAL_API_URL="https://env.outpost.run/api"
+ENV INFISICAL_TOKEN=""
 
 COPY --from=base /app/dist ./dist
 COPY --from=base /app/package.json ./package.json
 
 EXPOSE 3000
 
-CMD ["pnpm", "dev"]
+CMD ["infisical", "run", "--env=prod", "--", "pnpm", "dev"]

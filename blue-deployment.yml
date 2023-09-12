@@ -24,5 +24,11 @@ spec:
           - containerPort: 3000
             protocol: TCP
           imagePullPolicy: Always
-          command: ["pnpm"]
-          args: ["dev"]
+          command: ["infisical", "run", "--env=prod", "--"]
+          args: ["pnpm", "dev"]
+          env:
+            - name: INFISICAL_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: infisical-token-comet
+                  key: INFISICAL_TOKEN 
