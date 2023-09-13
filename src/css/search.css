@@ -9,6 +9,21 @@
   font-size: 0.875rem;
 }
 
+.outpost-search :is(button, button:active, button:focus) {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.outpost-search :is(input, input:active, input:focus) {
+  outline: none;
+  border: 1px solid var(--op-border);
+}
+
+.outpost-search .icon {
+  z-index: 1;
+}
+
 /* variables */
 
 .outpost-search {
@@ -22,7 +37,7 @@
 /* styles */
 
 .outpost-search {
-  width: var(--width);
+  max-width: var(--width);
   height: var(--height);
   margin: 0 auto;
   border: 1px solid var(--op-border);
@@ -48,6 +63,7 @@
   position: relative;
   display: grid;
   grid-template-columns: max-content 1fr;
+  background-color: var(--op-surface-subdued);
 }
 
 .outpost-search .header form {
@@ -61,30 +77,45 @@
   width: 100%;
   inset: 0;
   z-index: 1;
+  background-color: var(--op-surface-subdued);
 }
 
-.outpost-search .header .icon {
-  z-index: 1;
+.outpost-search .header .controls {
+  position: absolute;
+  right: 1.25rem;
+  top: 50%;
+  translate: 0 -50%;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
 }
 
-.outpost-search .header input:active,
-.outpost-search .header input:focus {
-  outline: none;
+.outpost-search .header .mode {
+  background-color: var(--op-surface-active);
+  padding: 0.25rem;
+  border-radius: 0.5rem;
+  display: flex;
+  gap: 0.25rem;
+  align-items: center;
+}
+
+.outpost-search .header .mode button {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.outpost-search .header .mode button.active {
+  background-color: var(--op-surface);
+  box-shadow: 0px 1.33333px 4px 0.25px rgba(161, 161, 170, 0.33);
+}
+.outpost-search .header .refresh {
+  height: 1rem;
 }
 
 .outpost-search .header .title {
   font-size: 1.25rem;
   font-weight: 600;
   line-height: 1.5rem;
-}
-
-.outpost-search .header .refresh {
-  margin-left: auto;
-  border: none;
-  background: transparent;
-}
-.outpost-search .header .refresh:focus {
-  outline: none;
 }
 
 /***************** BODY ****************************/
@@ -122,24 +153,44 @@
   gap: 0.75rem;
 }
 
-/***************** FOOTER ****************************/
+/***************************** FOOTER *************************************/
 
 .outpost-search .footer {
   padding: 1.2rem 1rem;
 }
 
-.outpost-search .footer input {
+.outpost-search .footer .search-container {
+  position: relative;
+  padding: 0.5rem;
   width: 100%;
-  border: 1px solid var(--op-border);
   height: 2.25rem;
   border-radius: 0.5rem;
-  padding: 0.5rem;
-}
-.outpost-search .footer input:focus {
-  outline: none;
+  border: 1px solid var(--op-border);
+  overflow: hidden;
 }
 
-/* markdown elements */
+.outpost-search .footer input {
+  border: none;
+  height: 100%;
+  width: 100%;
+}
+
+.outpost-search .footer .search-container button {
+  position: absolute;
+  right: 0.5rem;
+  top: 50%;
+  translate: 0 -50%;
+  height: 100%;
+  padding: 0.5rem 0;
+  background-color: var(--op-surface);
+}
+
+.outpost-search .footer .search-container button .icon {
+  height: 1rem;
+  position: relative;
+}
+
+/**************************** MARKDOWN *************************************/
 
 .outpost-search .agent ul,
 .outpost-search .agent ol {
