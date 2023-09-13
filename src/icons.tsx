@@ -26,24 +26,50 @@ function RefreshIcon({ className = "" }: { className?: string }) {
       className={` ${className}`}
       xmlns="http://www.w3.org/2000/svg"
       fill="none"
-      height="20"
+      height="100%"
       viewBox="0 0 32 32"
-      width="20"
       color="currentColor"
     >
       <path
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
         d="M10.49 12.464h-6v-6"
       />
       <path
         stroke="currentColor"
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        stroke-width="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
         d="M8.732 23.778a11 11 0 1 0 0-15.556L4.49 12.464"
+      />
+    </svg>
+  );
+}
+
+function PaperPlaceIcon({ className = "" }: { className?: string }) {
+  return (
+    <svg
+      className={`${className} `}
+      xmlns="http://www.w3.org/2000/svg"
+      height="100%"
+      fill="none"
+      viewBox="0 0 32 32"
+      color="currentColor"
+    >
+      <path
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M9.02 16h7.486"
+      />
+      <path
+        stroke="currentColor"
+        strokeLinejoin="round"
+        strokeWidth="2"
+        d="M26.817 15.943 5.183 28l3.743-12L5.183 4l21.634 11.943Z"
       />
     </svg>
   );
@@ -153,4 +179,4 @@ function LoadingDots() {
   );
 }
 
-export { SearchIcon, RefreshIcon, ErrorIcon, LoadingDots };
+export { SearchIcon, RefreshIcon, ErrorIcon, LoadingDots, PaperPlaceIcon };
