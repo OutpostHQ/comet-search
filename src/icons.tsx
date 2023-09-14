@@ -101,11 +101,13 @@ function ErrorIcon({ className = "" }: { className?: string }) {
   );
 }
 
-function LoadingDots() {
+function LoadingDots(props: { className: string }) {
   return (
     <svg
+      className={`${props?.className || ""}`}
       color="currentColor"
       viewBox="0 0 120 30"
+      height="100%"
       xmlns="http://www.w3.org/2000/svg"
       fill="#fff"
     >
