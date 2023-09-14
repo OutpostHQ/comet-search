@@ -128,29 +128,48 @@
 }
 
 .outpost-search .body .messages {
-  display: grid;
-  gap: 1rem;
   overflow-x: hidden;
+  line-height: 1.25rem;
 }
 
 .outpost-search .body .user {
-  padding: 0.75rem;
-  border: 1px solid var(--op-border);
   background-color: var(--op-surface);
   max-width: 70%;
-  margin-left: auto;
   width: max-content;
-  border-radius: 0.25rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
 }
 
-.outpost-search .body .agent {
-  padding: 0.75rem;
-  border: 1px solid var(--op-border);
-  background-color: var(--op-surface-subdued);
-  border-radius: 0.25rem;
+.outpost-search .body .user:not(:first-of-type) {
+  padding-top: 2rem;
+}
+
+.outpost-search .body .comet {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+  padding-bottom: 2rem;
+  padding-top: 0.75rem;
+}
+
+.outpost-search .body .messages .comet:not(:last-child) {
+  border-bottom: 1px solid var(--op-border);
+}
+
+.outpost-search .body .comet.stream {
+  border-bottom: none;
+}
+
+.outpost-search .body .comet.error {
+  border-bottom: none;
+  color: var(--op-surface-critical);
+  font-weight: 600;
+}
+
+.outpost-search .body .loading-icon {
+  height: 0.5rem;
+  margin-top: 1rem;
 }
 
 /***************************** FOOTER *************************************/
