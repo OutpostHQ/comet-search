@@ -1,31 +1,66 @@
 import { Dialog, DialogContent } from "@radix-ui/react-dialog";
-import { FormEvent, useCallback, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Body } from "./body";
 import { Footer } from "./footer";
 import { Header } from "./header";
+import { Comet } from "outpostkit";
+import { useComet } from "./use-comet";
+import { CometModelConfig } from "../App";
 
-export default function Search() {
-  const [isFirstQuestion, setIsFirstQuestion] = useState(false);
+export default function Search(props: {
+  comet: Comet;
+  cometConfig: CometModelConfig;
+}) {
+  const [mode, setMode] = useState<"search" | "ask">("ask");
+  const [question, setQuestion] = useState("");
+  const bodyRef = useRef<null | HTMLDivElement>(null);
+  const {
+    promptComet,
+    errorMessage,
+    isFirstQuestion,
+    sessionMessages,
+    resetSession,
+    messageStream,
+    isLoading,
+  } = useComet(props?.comet, mode, setQuestion, props?.cometConfig);
 
-  const [mode, setMode] = useState<"search" | "ask">("search");
+  useEffect(() => {
+    if (bodyRef.current) {
+      bodyRef.current.scroll({ behavior: "instant", top: 10000000000 });
+    }
+  }, [question, sessionMessages, messageStream]);
 
-  const search = useCallback((e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    setIsFirstQuestion(false);
-  }, []);
+  const switchMode = useCallback(() => {
+    setMode((prev) => (prev == "ask" ? "search" : "ask"));
+    resetSession();
+  }, [resetSession]);
 
   return (
     <Dialog open>
       <DialogContent className="outpost-search">
         <Header
+          question={question}
+          setQuestion={setQuestion}
           mode={mode}
-          setMode={setMode}
-          search={search}
+          switchMode={switchMode}
           isFirstQuestion={isFirstQuestion}
-          resetSession={() => setIsFirstQuestion(true)}
+          resetSession={resetSession}
+          search={promptComet}
         />
-        <Body isFirstQuestion={isFirstQuestion} />
-        <Footer isFirstQuestion={isFirstQuestion} />
+        <Body
+          isLoading={isLoading}
+          ref={bodyRef}
+          errorMessage={errorMessage}
+          messages={sessionMessages}
+          isFirstQuestion={isFirstQuestion}
+          messageStream={messageStream}
+        />
+        <Footer
+          question={question}
+          setQuestion={setQuestion}
+          isFirstQuestion={isFirstQuestion}
+          search={promptComet}
+        />
       </DialogContent>
     </Dialog>
   );

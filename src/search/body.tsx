@@ -1,50 +1,78 @@
+import { Ref, forwardRef } from "react";
 import { MarkdownParser } from "./markdown-parser";
-import { markdown } from "./markdown";
+import { Messages } from "./use-comet";
+import { LoadingDots } from "../icons";
 
-export function Body(props: { isFirstQuestion: boolean }) {
+type Props = {
+  isFirstQuestion: boolean;
+  messages: Messages | null;
+  errorMessage: string | null;
+  messageStream: string | null;
+  isLoading: boolean;
+};
+
+export const Body = forwardRef((props: Props, ref: Ref<HTMLDivElement>) => {
   return (
-    <div className="body">
-      {!props?.isFirstQuestion && (
-        <div className="messages">
-          <p className="user">What is use callback is react?</p>
-          <div className="agent">
-            <MarkdownParser answer={markdown} />
-          </div>
-        </div>
-      )}
+    <div className="body" ref={ref}>
+      <div className="messages">
+        {props.messages !== null &&
+          props.messages.map((i, index) =>
+            i.from === "USER" ? (
+              <SearchQuestion key={`${index}/USER`} text={i.text} />
+            ) : (
+              <SearchReply
+                key={`${i?.conversationId}/COMET/${index}`}
+                text={i.text}
+                error={i.error}
+              />
+            )
+          )}
+
+        {props?.messageStream && (
+          <SearcbReplyStream stream={props?.messageStream} />
+        )}
+
+        {props?.isLoading && !props?.messageStream && (
+          <LoadingDots className="loading-icon" />
+        )}
+      </div>
+    </div>
+  );
+});
+
+export function SearchQuestion(props: { text: string; key: string }) {
+  return (
+    <p className="user" key={props.key}>
+      {props.text}
+    </p>
+  );
+}
+
+export function SearchReply(props: {
+  text: string;
+  key: string;
+  error: boolean | undefined;
+}) {
+  return (
+    <div className={`comet ${props.error === true && "error"}`} key={props.key}>
+      <MarkdownParser answer={props.text || ""} />
     </div>
   );
 }
 
 export function SearcbReplyStream(props: { stream: string | undefined }) {
   return (
-    <div className="bg-subdued">
-      <div className=" mx-auto w-full max-w-[700px] ">
-        <div className="flex gap-4  py-5">
-          {/* <Aperture className="h-5 w-5 shrink-0 text-icon-soft" /> */}
-          <div className="w-[calc(100%-20px-16px)]  space-y-4 text-bodyLg">
-            <MarkdownParser answer={props?.stream as string} />
-          </div>
-        </div>
-      </div>
+    <div className="comet stream">
+      <MarkdownParser answer={props?.stream || ""} />
     </div>
   );
 }
 
-export function SearchQuestion(props: { text: string }) {
-  return (
-    <div className="bg-hovered [&:last-child]:border-b">
-      <div className="mx-auto  max-w-[700px]  bg-hovered ">
-        <div className="flex gap-4 py-5">
-          {/* <UserCircle2Icon className="h-5 w-5 shrink-0 text-icon-soft" /> */}
-          <div className="text-bodyLg">{props?.text}</div>
-        </div>
-      </div>
-    </div>
-  );
+export function SearchReplyError(props: { errorMessage: string }) {
+  return <div className="comet error">{props?.errorMessage}</div>;
 }
 
-export function SearchReply(props: {
+export function SearchReplyssd(props: {
   text: string;
   conversationId: string | undefined | null;
 }) {
