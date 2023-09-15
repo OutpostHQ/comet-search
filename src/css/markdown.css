@@ -21,17 +21,18 @@ pre[class*="language-"]::-moz-selection,
 pre[class*="language-"] ::-moz-selection,
 code[class*="language-"]::-moz-selection,
 code[class*="language-"] ::-moz-selection {
-  background: #000;
+  background: var(--op-surface-primary) !important;
 }
 
 pre[class*="language-"]::selection,
 pre[class*="language-"] ::selection,
 code[class*="language-"]::selection,
 code[class*="language-"] ::selection {
-  background: #000;
+  background: var(--op-surface-primary) !important;
 }
 
-pre div {
+pre div,
+pre {
   background-color: #000 !important;
   background-color: #000 !important;
   border-radius: 0.5rem !important;
