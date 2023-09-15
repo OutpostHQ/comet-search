@@ -23,6 +23,9 @@ function createSearchHeader(parent: HTMLElement) {
   mode.classList.add("mode");
   refresh.classList.add("refresh");
 
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
   ask.innerText = "Ask";
   search.innerText = "Search";
   ask.classList.add("active");
@@ -41,8 +44,39 @@ function createSearchHeader(parent: HTMLElement) {
   parent.appendChild(header);
 }
 
+function createSearchBody(parent: HTMLElement) {
+  const body = document.createElement("div");
+  body.classList.add("body");
+  body.innerText = "jakdskjd";
+  parent.appendChild(body);
+}
+
+function createSearchFooter(parent: HTMLElement) {
+  const footer = document.createElement("form");
+  const searchContainer = document.createElement("div");
+  const input = document.createElement("input");
+  const button = document.createElement("button");
+
+  searchContainer.classList.add("search-container");
+  button.classList.add("search");
+
+  footer.classList.add("footer");
+
+  footer.addEventListener("submit", (e) => {
+    e.preventDefault();
+  });
+
+  parent.appendChild(footer);
+  footer.appendChild(searchContainer);
+  searchContainer.appendChild(input);
+  searchContainer.appendChild(button);
+  button.appendChild(PaperPlaneIcon());
+}
+
 const elem = createSearchComponent();
 createSearchHeader(elem);
+createSearchBody(elem);
+createSearchFooter(elem);
 
 function createSVGChild(
   elementType: string,
@@ -111,5 +145,35 @@ function RefrechIcon() {
   icon.appendChild(child1);
   icon.appendChild(child2);
 
+  return icon;
+}
+
+function PaperPlaneIcon() {
+  const icon = createSVGChild("svg", {
+    class: "icon",
+    height: "100%",
+    xmlns: "http://www.w3.org/2000/svg",
+    viewBox: "0 0 32 32",
+    stroke: "currentColor",
+    fill: "none",
+  });
+
+  const child1 = createSVGChild("path", {
+    stroke: "currentColor",
+    "stroke-linecap": "round",
+    "stroke-linejoin": "round",
+    "stroke-width": "2",
+    d: "M9.02 16h7.486",
+  });
+
+  const child2 = createSVGChild("path", {
+    stroke: "currentColor",
+    "stroke-linejoin": "round",
+    "stroke-width": "2",
+    d: "M26.817 15.943 5.183 28l3.743-12L5.183 4l21.634 11.943Z",
+  });
+
+  icon.appendChild(child1);
+  icon.appendChild(child2);
   return icon;
 }
