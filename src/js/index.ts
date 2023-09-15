@@ -1,40 +1,13 @@
 import { Remarkable } from "remarkable";
-import hljs from "highlight.js";
 
-const md = new Remarkable({
-  highlight: function (str, lang) {
-    if (lang && hljs.getLanguage(lang)) {
-      try {
-        return hljs.highlight(lang, str).value;
-      } catch (err) {
-        // catch error
-      }
-    }
+import prism from "prismjs";
 
-    try {
-      return hljs.highlightAuto(str).value;
-    } catch (err) {
-      // catch error
-    }
+const md = new Remarkable();
 
-    return ""; // use external default escaping
-  },
-});
-
-const testMd = `
-# Heading
-## hehe
-
-\`\`\`
-let code  = new Code()
-console.log(code)
-\`\`\`
-
-import { Remarkable } from 'remarkable';
-var md = new Remarkable();
-
-console.log(md.render('# Remarkable rulezz!'));
-// => <h1>Remarkable rulezz!</h1>`;
+const testMd =
+  '```javascript \n\
+ let company = "outpost" \n \
+ ```';
 const root = document.getElementById("root");
 function createSearchComponent() {
   const search = document.createElement("div");
@@ -84,11 +57,27 @@ function createSearchHeader(parent: HTMLElement) {
 
 function createSearchBody(parent: HTMLElement) {
   const body = document.createElement("div");
+  const messages = document.createElement("div");
+  const user = document.createElement("div");
+  const comet = document.createElement("div");
+  const cometContainer = document.createElement("div");
+
   body.classList.add("body");
+  messages.classList.add("messages");
+  user.classList.add("user");
+
+  cometContainer.classList.add("comet");
+
+  body.appendChild(messages);
+
   const html = md.render(testMd);
-  body.innerHTML = html;
+
+  comet.innerHTML = html;
 
   parent.appendChild(body);
+  body.appendChild(messages);
+  messages.appendChild(cometContainer);
+  cometContainer.appendChild(comet);
 }
 
 function createSearchFooter(parent: HTMLElement) {
@@ -217,3 +206,5 @@ function PaperPlaneIcon() {
   icon.appendChild(child2);
   return icon;
 }
+
+prism.highlightAll();
