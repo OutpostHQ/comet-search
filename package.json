@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.4",
-    "outpostkit": "^0.0.11",
+    "outpostkit": "^0.0.13",
     "prismjs": "^1.29.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
