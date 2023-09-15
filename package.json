@@ -11,16 +11,19 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.4",
+    "highlight.js": "^11.8.0",
     "outpostkit": "^0.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-markdown": "^8.0.7",
-    "react-syntax-highlighter": "^15.5.0"
+    "react-syntax-highlighter": "^15.5.0",
+    "remarkable": "^2.0.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.21",
     "@types/react-dom": "^18.2.7",
     "@types/react-syntax-highlighter": "^15.5.7",
+    "@types/remarkable": "^2.0.3",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",
     "@vitejs/plugin-react": "^4.0.4",

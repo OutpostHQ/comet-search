@@ -1,7 +1,45 @@
+import { Remarkable } from "remarkable";
+import hljs from "highlight.js";
+
+const md = new Remarkable({
+  highlight: function (str, lang) {
+    if (lang && hljs.getLanguage(lang)) {
+      try {
+        return hljs.highlight(lang, str).value;
+      } catch (err) {
+        // catch error
+      }
+    }
+
+    try {
+      return hljs.highlightAuto(str).value;
+    } catch (err) {
+      // catch error
+    }
+
+    return ""; // use external default escaping
+  },
+});
+
+const testMd = `
+# Heading
+## hehe
+
+\`\`\`
+let code  = new Code()
+console.log(code)
+\`\`\`
+
+import { Remarkable } from 'remarkable';
+var md = new Remarkable();
+
+console.log(md.render('# Remarkable rulezz!'));
+// => <h1>Remarkable rulezz!</h1>`;
 const root = document.getElementById("root");
 function createSearchComponent() {
   const search = document.createElement("div");
   search.classList.add("outpost-search");
+
   root?.appendChild(search);
   return search;
 }
@@ -47,7 +85,9 @@ function createSearchHeader(parent: HTMLElement) {
 function createSearchBody(parent: HTMLElement) {
   const body = document.createElement("div");
   body.classList.add("body");
-  body.innerText = "jakdskjd";
+  const html = md.render(testMd);
+  body.innerHTML = html;
+
   parent.appendChild(body);
 }
 
