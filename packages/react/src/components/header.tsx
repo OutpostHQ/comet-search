@@ -1,5 +1,6 @@
 import React from "react";
-import { RefreshIcon, SearchIcon } from "../icons";
+
+import { RefreshIcon, SearchIcon } from "./icons";
 
 export function Header(props: {
   question: string;

@@ -24,3 +24,5 @@ dist-ssr
 
 /src/js/test-credentials.ts
 *.env
+.turbo
+/example

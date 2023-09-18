@@ -1,7 +1,11 @@
 {
-  "name": "searchjs-web",
-  "private": true,
-  "version": "0.0.0",
+  "name": "@searchjs/web",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/outposthq/searchjs.git"
+  },
+  "license": "MIT",
   "type": "module",
   "scripts": {},
   "dependencies": {

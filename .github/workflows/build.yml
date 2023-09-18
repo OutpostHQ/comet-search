@@ -8,7 +8,7 @@ on:
 
 env:
   REGISTRY: ghcr.io
-  IMAGE_NAME: outposthq/comet-search
+  IMAGE_NAME: outposthq/searchjs
   IMAGE_TAG: latest-${{ github.run_number }}
 
 jobs:
@@ -59,25 +59,25 @@ jobs:
 
       - name: Check Current Service Deployment
         run: |
-          CURRENT_DEPLOYMENT=$(kubectl get service comet-search-svc -n outpost -o jsonpath='{.spec.selector.app}')
+          CURRENT_DEPLOYMENT=$(kubectl get service searchjs-svc -n outpost -o jsonpath='{.spec.selector.app}')
           echo "Current deployment: $CURRENT_DEPLOYMENT"
 
-          if [[ "$CURRENT_DEPLOYMENT" == "blue-comet-search" ]]; then
+          if [[ "$CURRENT_DEPLOYMENT" == "blue-searchjs" ]]; then
             echo "Updating green deployment and service..."
-            sed -i "s|image: ghcr.io/outposthq/comet-search:latest|image: ghcr.io/outposthq/comet-search:${{ env.IMAGE_TAG }}|" green-deployment.yml
+            sed -i "s|image: ghcr.io/outposthq/searchjs:latest|image: ghcr.io/outposthq/searchjs:${{ env.IMAGE_TAG }}|" green-deployment.yml
             kubectl apply -f green-deployment.yml
             sleep 10
-            kubectl patch service comet-search-svc -p '{"spec":{"selector":{"app":"green-comet-search"}}}' -n outpost
+            kubectl patch service searchjs-svc -p '{"spec":{"selector":{"app":"green-searchjs"}}}' -n outpost
             sleep 5
-            kubectl scale deployment blue-comet-search --replicas=0 -n outpost
-          elif [[ "$CURRENT_DEPLOYMENT" == "green-comet-search" ]]; then
+            kubectl scale deployment blue-searchjs --replicas=0 -n outpost
+          elif [[ "$CURRENT_DEPLOYMENT" == "green-searchjs" ]]; then
             echo "Updating blue deployment and service..."
-            sed -i "s|image: ghcr.io/outposthq/comet-search:latest|image: ghcr.io/outposthq/comet-search:${{ env.IMAGE_TAG }}|" blue-deployment.yml
+            sed -i "s|image: ghcr.io/outposthq/searchjs:latest|image: ghcr.io/outposthq/searchjs:${{ env.IMAGE_TAG }}|" blue-deployment.yml
             kubectl apply -f blue-deployment.yml
             sleep 10
-            kubectl patch service comet-search-svc -p '{"spec":{"selector":{"app":"blue-comet-search"}}}' -n outpost
+            kubectl patch service searchjs-svc -p '{"spec":{"selector":{"app":"blue-searchjs"}}}' -n outpost
             sleep 5
-            kubectl scale deployment green-comet-search --replicas=0 -n outpost
+            kubectl scale deployment green-searchjs --replicas=0 -n outpost
 
           else
             echo "Unknown deployment detected. Exiting..."

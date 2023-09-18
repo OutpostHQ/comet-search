@@ -1,4 +1,6 @@
-import { PaperPlaceIcon } from "../icons";
+import React from "react";
+
+import { PaperPlaceIcon } from "./icons";
 
 export function Footer(props: {
   isFirstQuestion: boolean;

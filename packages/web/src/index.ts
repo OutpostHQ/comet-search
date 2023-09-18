@@ -47,11 +47,11 @@ export type CometState = {
 export function createOutpostComponent(
   apiKey = test.API_KEY || "",
   cometId = test.COMET_ID || "",
-  useCometConfig?: Record<string, string>
+  userCometConfig?: Record<string, string>
 ) {
   const comet = new Comet(apiKey, cometId);
 
-  const cometConfig = { stream: true, ...useCometConfig };
+  const cometConfig = { stream: true, ...userCometConfig };
 
   const messagesElem = createBodyMessages();
 

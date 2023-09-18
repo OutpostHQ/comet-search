@@ -1,3 +1,4 @@
+import React from "react";
 import { Ref, forwardRef } from "react";
 import { MarkdownParser } from "./markdown-parser";
 import { Messages } from "../hooks/use-comet";

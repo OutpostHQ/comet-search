@@ -1,3 +1,5 @@
+import React from "react";
+
 import {
   Dialog,
   DialogContent,
@@ -12,12 +14,11 @@ import { Body } from "./body";
 import { Footer } from "./footer";
 import { Header } from "./header";
 import { Comet } from "outpostkit";
-import { useComet } from "./use-comet";
-import { CometModelConfig } from "../App";
+import { useComet } from "../hooks/use-comet";
 
 function SearchContent(
   props: {
-    cometConfig: CometModelConfig;
+    cometConfig: Record<string, string>;
     APIKey: string;
     cometId: string;
   } & DialogContentProps
