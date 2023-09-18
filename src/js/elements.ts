@@ -1,84 +1,122 @@
-function createSearchHeader() {
-  const header = document.createElement("div");
-  const form = document.createElement("form");
-  const input = document.createElement("input");
-  const controls = document.createElement("div");
-  const mode = document.createElement("div");
-  const ask = document.createElement("button");
-  const search = document.createElement("button");
-  const refresh = document.createElement("button");
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
+import { Comet } from "outpostkit";
+import { promptComet } from "./utils";
+import { CometState } from ".";
+
+function createHeader(
+  comet: Comet,
+  cometConfig: Record<string, any>,
+  cometState: CometState
+) {
+  const header = document.createElement("div");
   header.classList.add("header");
+
+  const title = document.createElement("h2");
+  title.innerText = "Outpost.Ai";
+  title.style.display = "none";
+  title.classList.add("title");
+
+  const form = document.createElement("form");
   form.classList.add("form");
+
+  const input = document.createElement("input");
   input.classList.add("input");
+
+  const controls = document.createElement("div");
   controls.classList.add("controls");
+
+  const mode = document.createElement("div");
   mode.classList.add("mode");
+
+  const ask = document.createElement("button");
+  ask.innerText = "Ask";
+  ask.classList.add("active");
+
+  const search = document.createElement("button");
+  search.innerText = "Search";
+
+  const refresh = document.createElement("button");
+  refresh.appendChild(RefreshIcon());
+
   refresh.classList.add("refresh");
+  refresh.addEventListener("click", cometState.messages.reset);
 
   form.addEventListener("submit", (e) => {
     e.preventDefault();
+
+    if (!input.value.trim()) return;
+
+    cometState.isFirstMessage = false;
+
+    form.style.display = "none";
+    title.style.display = "block";
+    cometState.display.toggleFooter();
+
+    promptComet(comet, cometConfig, cometState, input.value);
   });
-  ask.innerText = "Ask";
-  search.innerText = "Search";
-  ask.classList.add("active");
 
-  refresh.appendChild(RefrechIcon());
+  form.appendChild(SearchIcon());
+  form.appendChild(input);
 
-  header.appendChild(SearchIcon());
-  header.appendChild(form);
-  header.appendChild(controls);
   controls.appendChild(refresh);
-  controls.appendChild(mode);
+  // controls.appendChild(mode);
 
   mode.appendChild(ask);
   mode.appendChild(search);
-  form.appendChild(input);
+
+  header.appendChild(title);
+  header.appendChild(form);
+  header.appendChild(controls);
 
   return header;
 }
 
-function createSearchBody() {
-  const body = document.createElement("div");
+function createBodyMessages() {
   const messages = document.createElement("div");
-  const user = document.createElement("div");
-  const comet = document.createElement("div");
-  const cometContainer = document.createElement("div");
-
-  body.classList.add("body");
   messages.classList.add("messages");
-  user.classList.add("user");
+  return messages;
+}
 
-  cometContainer.classList.add("comet");
-
-  body.appendChild(messages);
-
-  body.appendChild(messages);
-  messages.appendChild(cometContainer);
-  cometContainer.appendChild(comet);
-
+function createBody() {
+  const body = document.createElement("div");
+  body.classList.add("body");
   return body;
 }
 
-function createSearchFooter() {
-  const footer = document.createElement("form");
+function createFooter(
+  comet: Comet,
+  cometConfig: Record<string, any>,
+
+  cometState: CometState
+) {
+  const footerForm = document.createElement("form");
+
   const searchContainer = document.createElement("div");
   const input = document.createElement("input");
+  input.autofocus = true;
   const button = document.createElement("button");
 
   searchContainer.classList.add("search-container");
   button.classList.add("search");
 
-  footer.classList.add("footer");
+  footerForm.classList.add("footer");
 
-  footer.addEventListener("submit", (e) => {
+  footerForm.addEventListener("submit", (e) => {
     e.preventDefault();
+    if (!input.value.trim()) return;
+
+    promptComet(comet, cometConfig, cometState, input.value);
+
+    input.value = "";
   });
 
-  footer.appendChild(searchContainer);
+  footerForm.appendChild(searchContainer);
   searchContainer.appendChild(input);
   searchContainer.appendChild(button);
   button.appendChild(PaperPlaneIcon());
-  return footer;
+  return footerForm;
 }
 
 function createSVGElem(
@@ -98,7 +136,7 @@ function createSVGElem(
 
 function SearchIcon() {
   const icon = createSVGElem("svg", {
-    class: "icon",
+    class: "icon firstSearch",
     height: "20",
     width: "20",
     xmlns: "http://www.w3.org/2000/svg",
@@ -119,7 +157,7 @@ function SearchIcon() {
   return icon;
 }
 
-function RefrechIcon() {
+function RefreshIcon() {
   const icon = createSVGElem("svg", {
     class: "icon",
     xmlns: "http://www.w3.org/2000/svg",
@@ -181,8 +219,121 @@ function PaperPlaneIcon() {
   return icon;
 }
 
-const header = createSearchHeader();
-const body = createSearchBody();
-const footer = createSearchFooter();
+function createLoadingIcon() {
+  const icon = createSVGElem("svg", {
+    class: "loading-icon",
+    color: "currentColor",
+    viewBox: "0 0 120 30",
+    height: "100%",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "#fff",
+  });
 
-export { header, body, footer };
+  const circle1 = createSVGElem("circle", {
+    fill: "currentColor",
+    cx: "15",
+    cy: "15",
+    r: "15",
+  });
+
+  const circle1Animate1 = createSVGElem("animate", {
+    attributeName: "r",
+    from: "15",
+    to: "15",
+    begin: "0s",
+    dur: "0.8s",
+    values: "15;9;15",
+    calcMode: "linear",
+    repeatCount: "indefinite",
+  });
+  const circle1Animate2 = createSVGElem("animate", {
+    attributeName: "fillOpacity",
+    from: "1",
+    to: "1",
+    begin: "0s",
+    dur: "0.8s",
+    values: "1;.5;1",
+    calcMode: "linear",
+    repeatCount: "indefinite",
+  });
+
+  circle1.appendChild(circle1Animate1);
+  circle1.appendChild(circle1Animate2);
+
+  const circle2 = createSVGElem("circle", {
+    fill: "currentColor",
+    cx: "60",
+    cy: "15",
+    r: "9",
+    fillOpacity: "0.3",
+  });
+
+  const circle2Animate1 = createSVGElem("animate", {
+    attributeName: "r",
+    from: "9",
+    to: "9",
+    begin: "0s",
+    dur: "0.8s",
+    values: "9;15;9",
+    calcMode: "linear",
+    repeatCount: "indefinite",
+  });
+  const circle2Animate2 = createSVGElem("animate", {
+    attributeName: "fillOpacity",
+    from: "0.5",
+    to: "0.5",
+    begin: "0s",
+    dur: "0.8s",
+    values: "0.5;1;0.5",
+    calcMode: "linear",
+    repeatCount: "indefinite",
+  });
+
+  circle2.appendChild(circle2Animate1);
+  circle2.appendChild(circle2Animate2);
+
+  const circle3 = createSVGElem("circle", {
+    fill: "currentColor",
+    cx: "105",
+    cy: "15",
+    r: "15",
+  });
+
+  const circle3Animate1 = createSVGElem("animate", {
+    attributeName: "r",
+    from: "15",
+    to: "15",
+    begin: "0s",
+    dur: "0.8s",
+    values: "15;9;15",
+    calcMode: "linear",
+    repeatCount: "indefinite",
+  });
+  const circle3Animate2 = createSVGElem("animate", {
+    attributeName: "fillOpacity",
+    from: "1",
+    to: "1",
+    begin: "0s",
+    dur: "0.8s",
+    values: "1;.5;1",
+    calcMode: "linear",
+    repeatCount: "indefinite",
+  });
+
+  circle3.appendChild(circle3Animate1);
+  circle3.appendChild(circle3Animate2);
+
+  icon.appendChild(circle1);
+  icon.appendChild(circle2);
+  icon.appendChild(circle3);
+
+  return icon;
+}
+
+export {
+  createHeader,
+  createBody,
+  createFooter,
+  createBodyMessages,
+  createLoadingIcon,
+};
