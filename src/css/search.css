@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");
+
 /* reset */
 .outpost-search *,
 .outpost-search *::after,
@@ -7,6 +9,8 @@
   margin: 0;
   text-align: left;
   font-size: 0.875rem;
+  font-family: "Inter", sans-serif;
+  font-display: swap;
 }
 
 .outpost-search :is(button, button:active, button:focus) {
@@ -62,13 +66,16 @@
   padding: 0 1rem;
   position: relative;
   display: grid;
-  grid-template-columns: max-content 1fr;
+  grid-template-columns: 1fr;
   background-color: var(--op-surface-subdued);
 }
 
 .outpost-search .header form {
   height: 100%;
   width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
 }
 
 .outpost-search .header input {
@@ -78,16 +85,20 @@
   inset: 0;
   z-index: 1;
   background-color: var(--op-surface-subdued);
+  flex: 1;
 }
 
 .outpost-search .header .controls {
   position: absolute;
-  right: 1.25rem;
+  right: 1rem;
   top: 50%;
   translate: 0 -50%;
   display: flex;
   gap: 1rem;
   align-items: center;
+  z-index: 1000;
+  background-color: var(--background);
+  padding: 0.25rem;
 }
 
 .outpost-search .header .mode {
