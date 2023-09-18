@@ -1,26 +1,27 @@
-import { Comet } from "outpostkit";
-import Search from "./search";
-import { useMemo } from "react";
+import {
+  SearchContent,
+  SearchDialog,
+  SearchDialogOverlay,
+  SearchDialogTrigger,
+} from "./search";
 
 export type CometModelConfig = {
   stream: boolean;
 };
-
-export type CometDesign = {
-  theme: "light" | "dark";
-};
+const cometConfig = { stream: true };
 
 function App() {
-  const comet = useMemo(() => {
-    return new Comet(
-      import.meta.env.VITE_API_KEY,
-      import.meta.env.VITE_COMET_ID
-    );
-  }, []);
-
-  const cometConfig = useMemo(() => ({ stream: true } as CometModelConfig), []);
-
-  return <Search cometConfig={cometConfig} comet={comet} />;
+  return (
+    <SearchDialog>
+      <SearchDialogTrigger>React component</SearchDialogTrigger>
+      <SearchContent
+        APIKey={import.meta.env.VITE_API_KEY}
+        cometId={import.meta.env.VITE_COMET_ID}
+        cometConfig={cometConfig}
+      />
+      <SearchDialogOverlay />
+    </SearchDialog>
+  );
 }
 
 export default App;

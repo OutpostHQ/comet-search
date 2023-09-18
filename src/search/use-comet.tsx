@@ -13,7 +13,6 @@ export type Messages = {
 
 export function useComet(
   comet: Comet,
-  mode: "search" | "ask",
   setQuestion: React.Dispatch<React.SetStateAction<string>>,
   cometConfig: CometModelConfig
 ) {
@@ -50,13 +49,9 @@ export function useComet(
       setQuestion("");
 
       // if the mode is search, the session should reset on every question
-      if (mode === "search") {
-        resetSession();
-        setSessionMessages(null);
-        setIsFirstQuestion(true);
-      } else {
-        setIsFirstQuestion(false);
-      }
+      resetSession();
+      setSessionMessages(null);
+      setIsFirstQuestion(true);
 
       setIsLoading(true);
 
@@ -116,7 +111,7 @@ export function useComet(
         });
       }
     },
-    [comet, currentSessionId, mode, resetSession, setQuestion, cometConfig]
+    [comet, currentSessionId, resetSession, setQuestion, cometConfig]
   );
 
   return {

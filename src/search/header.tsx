@@ -3,7 +3,6 @@ import { RefreshIcon, SearchIcon } from "../icons";
 
 export function Header(props: {
   question: string;
-  mode: "search" | "ask";
   isFirstQuestion?: boolean;
   search: (input: string) => Promise<void>;
   resetSession: () => void;
