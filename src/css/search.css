@@ -40,16 +40,28 @@
 
 /* styles */
 
+.outpost-search-overlay {
+  display: block;
+  inset: 0;
+  position: fixed;
+  background-color: #000b;
+  z-index: 10000;
+}
+
 .outpost-search {
   max-width: var(--width);
   height: var(--height);
-  margin: 0 auto;
   border: 1px solid var(--op-border);
   box-shadow: var(--op-shadow-050);
   border-radius: 0.5rem;
   overflow: hidden;
   display: grid;
   grid-template-rows: max-content 1fr;
+  z-index: 20000;
+  background-color: var(--background);
+  position: fixed;
+  inset: 0;
+  margin: 2rem auto;
 }
 
 .outpost-search:focus {
@@ -96,7 +108,7 @@
   display: flex;
   gap: 1rem;
   align-items: center;
-  z-index: 1000;
+  z-index: 100;
   background-color: var(--background);
   padding: 0.25rem;
 }
@@ -133,7 +145,6 @@
 
 .outpost-search .body {
   padding: 1.25rem;
-  height: 100%;
   overflow-y: auto;
   overflow-x: hidden;
 }
