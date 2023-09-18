@@ -6,9 +6,8 @@
     "url": "https://github.com/outposthq/searchjs.git"
   },
   "license": "MIT",
-  "type": "module",
-  "main": "./dist/cjs/index.js",
-  "module": "./dist/esm/index.js",
+  "main": "./dist/esm/index.js",
+  "module": "./dist/esm/index.mjs",
   "types": "./dist/@types/index.d.ts",
   "files": [
     "dist"

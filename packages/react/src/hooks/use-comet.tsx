@@ -72,6 +72,9 @@ export function useComet(
           },
           (text: string) => {
             setMessageStream((prev) => (prev !== null ? prev + text : text));
+          },
+          {
+            useNativeFetch: true,
           }
         );
 

@@ -14,7 +14,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 rimrafSync("dist");
 
 const SWC_OPTIONS = defineRollupSwcOption({
-  minify: true,
+  minify: false,
   jsc: {
     baseUrl: __dirname,
   },
@@ -37,7 +37,7 @@ const prodConfig_CJS = {
       clearLine: true,
     }),
     externals({
-      deps: false,
+      deps: true,
       devDeps: true,
     }),
     swc(SWC_OPTIONS),
