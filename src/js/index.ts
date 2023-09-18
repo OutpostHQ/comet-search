@@ -10,7 +10,11 @@ import {
 import { Comet } from "outpostkit";
 import { CometMessage } from "./utils";
 import Prism from "prismjs";
-import { test } from "./test-credentials";
+
+const test = {
+  API_KEY: "",
+  COMET_ID: "",
+};
 
 export type CometState = {
   mode: "chat" | "search";
@@ -42,7 +46,7 @@ export type CometState = {
 
 export function createOutpostComponent(
   apiKey = test.API_KEY || "",
-  cometId = test.API_KEY || "",
+  cometId = test.COMET_ID || "",
   useCometConfig?: Record<string, string>
 ) {
   const comet = new Comet(apiKey, cometId);
