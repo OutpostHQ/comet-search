@@ -14,7 +14,6 @@ export function Header(props: {
     <div className="header">
       {props.isFirstQuestion ? (
         <>
-          <SearchIcon className="icon" />
           <form
             onSubmit={(e) => {
               e.preventDefault();
@@ -24,6 +23,7 @@ export function Header(props: {
               }
             }}
           >
+            <SearchIcon className="icon" />
             <input
               onChange={(e) => {
                 props.setQuestion(e.target.value);
@@ -43,7 +43,7 @@ export function Header(props: {
             <RefreshIcon className="icon" />
           </button>
         )}
-        <div className="mode">
+        {/* <div className="mode">
           <button
             onClick={props.switchMode}
             className={`${props?.mode == "search" && "active"}`}
@@ -56,7 +56,7 @@ export function Header(props: {
           >
             ask
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

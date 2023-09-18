@@ -9,8 +9,8 @@ dependencies:
     specifier: ^1.0.4
     version: 1.0.4(@types/react-dom@18.2.7)(@types/react@18.2.21)(react-dom@18.2.0)(react@18.2.0)
   outpostkit:
-    specifier: ^0.0.13
-    version: 0.0.13
+    specifier: 0.0.15
+    version: 0.0.15
   prismjs:
     specifier: ^1.29.0
     version: 1.29.0
@@ -2240,8 +2240,8 @@ packages:
       type-check: 0.4.0
     dev: true
 
-  /outpostkit@0.0.13:
-    resolution: {integrity: sha512-A/7CrsrphNTXR0PO6/qPcxD4jIclJ2y67/8LViHYn83zgUAbdgv6N8sAwqCu2hDR2IjAgR7rVsvbTVd+Ptm+Vw==}
+  /outpostkit@0.0.15:
+    resolution: {integrity: sha512-34u+F/B7K9LMO/vdjMp5KYH7HPK2QTYgEFEZswrpZ5jSgubAmIT+GaFyP2X7f/fFyxpnLaNe5OeIPIcRK0G0Nw==}
     dependencies:
       '@microsoft/fetch-event-source': 2.0.1
       axios: 1.5.0

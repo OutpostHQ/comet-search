@@ -92,7 +92,7 @@ export function useComet(
               conversationId: res.conversationId,
               from: "COMET",
               sessionId: res.sessionId,
-              text: res.text,
+              text: res.generations[0],
             },
           ];
         });

@@ -23,6 +23,8 @@ function createHeader(
 
   const input = document.createElement("input");
   input.classList.add("input");
+  input.placeholder = "Search...";
+  input.focus();
 
   const controls = document.createElement("div");
   controls.classList.add("controls");
@@ -39,7 +41,7 @@ function createHeader(
 
   const refresh = document.createElement("button");
   refresh.appendChild(RefreshIcon());
-
+  refresh.style.display = "none";
   refresh.classList.add("refresh");
   refresh.addEventListener("click", cometState.messages.reset);
 
@@ -49,6 +51,7 @@ function createHeader(
     if (!input.value.trim()) return;
 
     cometState.isFirstMessage = false;
+    refresh.style.display = "block";
 
     form.style.display = "none";
     title.style.display = "block";
@@ -95,7 +98,9 @@ function createFooter(
 
   const searchContainer = document.createElement("div");
   const input = document.createElement("input");
-  input.autofocus = true;
+  input.placeholder = "Search...";
+
+  input.focus();
   const button = document.createElement("button");
 
   searchContainer.classList.add("search-container");

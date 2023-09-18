@@ -1,5 +1,4 @@
 import { Comet } from "outpostkit";
-import "./css/App.css";
 import Search from "./search";
 import { useMemo } from "react";
 
