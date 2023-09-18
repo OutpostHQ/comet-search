@@ -1,0 +1,23 @@
+{
+  "name": "searchjs-web",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {},
+  "dependencies": {
+    "outpostkit": "0.0.15",
+    "prismjs": "^1.29.0",
+    "remarkable": "^2.0.1"
+  },
+  "devDependencies": {
+    "@types/prismjs": "^1.26.0",
+    "@types/remarkable": "^2.0.3",
+    "@typescript-eslint/eslint-plugin": "^6.5.0",
+    "@typescript-eslint/parser": "^6.5.0",
+    "@vitejs/plugin-react": "^4.0.4",
+    "eslint": "^8.48.0",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.3",
+    "typescript": "^5.2.2"
+  }
+}
