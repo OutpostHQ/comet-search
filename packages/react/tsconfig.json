@@ -1,16 +1,19 @@
 {
   "compilerOptions": {
-    "rootDir": "./src",
-    "baseUrl": "./src",
+    "baseUrl": ".",
+    "rootDir": "src",
     "declaration": true,
-    "declarationDir": "dist",
-    "module": "ESNext",
-    "target": "ES5",
-    "lib": ["ES6", "DOM", "DOM.Iterable", "ES2016", "ES2017"],
-    "sourceMap": true,
     "jsx": "react",
+    "skipLibCheck": true,
     "moduleResolution": "node",
-    "allowSyntheticDefaultImports": true,
-    "esModuleInterop": true
-  }
+    "lib": ["esnext", "dom"],
+    "module": "ESNext",
+    "target": "ESNext",
+    "emitDeclarationOnly": true,
+    "declarationDir": "./dist/@types",
+    "allowSyntheticDefaultImports": true
+  },
+  "compileOnSave": false,
+  "exclude": ["node_modules"],
+  "include": ["src/**/*"]
 }
