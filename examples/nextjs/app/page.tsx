@@ -16,8 +16,8 @@ export default function Home() {
           cometConfig={{
             stream: true,
           }}
-          APIKey={process.env.NEXT_PUBLIC_COMET_API_KEY}
-          cometId={process.env.NEXT_PUBLIC_COMET_ID}
+          APIKey={process.env.NEXT_PUBLIC_COMET_API_KEY as string}
+          cometId={process.env.NEXT_PUBLIC_COMET_ID as string}
         />
         <SearchDialogOverlay />
       </SearchDialog>
