@@ -5,7 +5,7 @@ import { tscPlugin } from "./tsc-plugin.js";
  * @type {import('esbuild').BuildOptions}
  **/
 const config = {
-  entryPoints: ["src/index.tsx"],
+  entryPoints: ["src/index.tsx", "src/init.ts"],
   outdir: "dist/",
   format: "esm",
   target: "",

@@ -13,7 +13,8 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "@searchjs/react": "workspace:*",
-    "@searchjs/web": "workspace:*"
+    "@searchjs/web": "workspace:*",
+    "@searchjs/css": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "^18.2.15",

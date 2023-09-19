@@ -10,8 +10,14 @@
   "main": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "files": [
-    "dist"
+    "dist/index.*",
+    "dist/init.*",
+    "dist/types.*"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./init": "./dist/init.js"
+  },
   "scripts": {
     "analyze": "node scripts/analyze.js",
     "build": "node scripts/build.js",
