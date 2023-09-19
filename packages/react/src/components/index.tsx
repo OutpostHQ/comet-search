@@ -16,7 +16,7 @@ import { Header } from "./header";
 import { Comet } from "outpostkit";
 import { useComet } from "../hooks/use-comet";
 
-import "@searchjs/css/index.css";
+import "@searchjs/css";
 
 function SearchContent(
   props: {
