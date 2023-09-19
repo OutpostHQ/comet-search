@@ -13,7 +13,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 rimrafSync("dist");
 
 const SWC_OPTIONS = defineRollupSwcOption({
-  minify: false,
+  minify: true,
   jsc: {
     baseUrl: __dirname,
   },
