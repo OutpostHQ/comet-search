@@ -1,0 +1,26 @@
+{
+  "include": ["src/*"],
+  "compilerOptions": {
+    "checkJs": true,
+    "module": "node16",
+    "target": "esnext",
+    "sourceMap": true,
+    "declaration": true,
+    "declarationMap": true,
+    "incremental": true,
+    "emitDeclarationOnly": true,
+    "composite": true,
+    "strict": true,
+    "isolatedModules": true,
+    "skipLibCheck": true,
+    "verbatimModuleSyntax": true,
+    "jsx": "react",
+    "outDir": "dist/",
+    "rootDir": "./src",
+    "paths": {
+      "react": ["../../node_modules/preact/compat/"],
+      "react-dom": ["../../node_modules/preact/compat/"],
+      "@searchjs/react": ["../react/src/"]
+    }
+  }
+}

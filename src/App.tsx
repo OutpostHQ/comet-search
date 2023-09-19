@@ -1,10 +1,3 @@
-import {
-  SearchContent,
-  SearchDialog,
-  SearchDialogOverlay,
-  SearchDialogTrigger,
-} from "./search";
-
 export type CometModelConfig = {
   stream: boolean;
 };

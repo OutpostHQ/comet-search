@@ -1,11 +1,13 @@
 {
-  "name": "searchjs-css",
-  "private": true,
-  "version": "0.0.0",
-  "type": "module",
-  "scripts": {
-    "build": "tsc && vite build"
+  "name": "@searchjs/css",
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/outposthq/searchjs.git"
   },
-  "dependencies": {},
-  "devDependencies": {}
+  "files": [
+    "style.css"
+  ],
+  "license": "MIT",
+  "type": "module"
 }

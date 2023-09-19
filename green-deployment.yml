@@ -1,28 +1,28 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: green-comet-search
-  namespace: outpost   
+  name: green-searchjs
+  namespace: outpost
   labels:
-    app: green-comet-search
+    app: green-searchjs
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: green-comet-search
+      app: green-searchjs
   template:
     metadata:
       labels:
-        app: green-comet-search
+        app: green-searchjs
     spec:
       imagePullSecrets:
         - name: regcred
       containers:
-        - name: comet-test
-          image: ghcr.io/outposthq/comet-search:latest
+        - name: searchjs
+          image: ghcr.io/outposthq/searchjs:latest
           ports:
-          - containerPort: 3000
-            protocol: TCP
+            - containerPort: 3000
+              protocol: TCP
           imagePullPolicy: Always
           command: ["infisical", "run", "--env=prod", "--"]
           args: ["pnpm", "dev"]
@@ -30,5 +30,5 @@ spec:
             - name: INFISICAL_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: infisical-token-comet-search
-                  key: INFISICAL_TOKEN 
+                  name: infisical-token-searchjs
+                  key: INFISICAL_TOKEN
