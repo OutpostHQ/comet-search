@@ -16,14 +16,17 @@ import { Header } from "./header";
 import { Comet } from "outpostkit";
 import { useComet } from "../hooks/use-comet";
 
+import "@searchjs/css/index.css";
+
 function SearchContent(
   props: {
-    cometConfig: Record<string, string>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    cometConfig: Record<string, any>;
     APIKey: string;
     cometId: string;
   } & DialogContentProps
 ) {
-  const { cometConfig, APIKey, cometId } = props;
+  const { cometConfig, APIKey, cometId, className = "", ...restProps } = props;
   const comet = useMemo(() => {
     return new Comet(APIKey, cometId);
   }, [APIKey, cometId]);
@@ -41,6 +44,9 @@ function SearchContent(
     isLoading,
   } = useComet(comet, setQuestion, cometConfig);
 
+  // move to the bottom when a new message arrives (stream or entire message),
+  // or  the user asks a new question (polyfill for the native css overflow-anchor property)
+
   useEffect(() => {
     if (bodyRef.current) {
       bodyRef.current.scroll({ behavior: "instant", top: 10000000000 });
@@ -52,7 +58,10 @@ function SearchContent(
   }, [resetSession]);
 
   return (
-    <DialogContent className="outpost-search" {...props}>
+    <DialogContent
+      className={"outpost-search light" + className}
+      {...restProps}
+    >
       <Header
         question={question}
         setQuestion={setQuestion}

@@ -4,7 +4,6 @@ import externals from "rollup-plugin-node-externals";
 import { rimrafSync } from "rimraf";
 import { swc, defineRollupSwcOption } from "rollup-plugin-swc3";
 import swcPreserveDirectives from "rollup-swc-preserve-directives";
-import packageJson from "./package.json" assert { type: "json" };
 
 import path from "node:path";
 import { fileURLToPath } from "node:url";

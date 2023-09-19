@@ -7,10 +7,6 @@ import {
   SearchDialogTrigger,
 } from "@searchjs/react";
 
-import "@searchjs/css/tokens.css";
-import "@searchjs/css/search.css";
-import "@searchjs/css/markdown.css";
-
 export default function Home() {
   return (
     <main>
@@ -18,8 +14,7 @@ export default function Home() {
         <SearchDialogTrigger>React component</SearchDialogTrigger>
         <SearchContent
           cometConfig={{
-            stream: false,
-            useCustomFetch: true,
+            stream: true,
           }}
           APIKey={process.env.NEXT_PUBLIC_COMET_API_KEY}
           cometId={process.env.NEXT_PUBLIC_COMET_ID}

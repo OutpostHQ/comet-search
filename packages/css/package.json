@@ -6,15 +6,8 @@
     "url": "https://github.com/outposthq/searchjs.git"
   },
   "files": [
-    "search.css",
-    "markdown.css",
-    "tokens.css"
+    "style.css"
   ],
   "license": "MIT",
-  "type": "module",
-  "scripts": {
-    "build": "rollup -c"
-  },
-  "dependencies": {},
-  "devDependencies": {}
+  "type": "module"
 }
