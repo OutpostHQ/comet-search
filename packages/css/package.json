@@ -9,5 +9,7 @@
     "style.css"
   ],
   "license": "MIT",
-  "type": "module"
+  "exports": {
+    ".": "./index.css"
+  }
 }
