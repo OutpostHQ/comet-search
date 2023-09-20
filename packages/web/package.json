@@ -34,5 +34,8 @@
     "preact": "^10.17.1",
     "react": "npm:@preact/compat",
     "react-dom": "npm:@preact/compat"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
