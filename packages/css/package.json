@@ -6,7 +6,7 @@
     "url": "https://github.com/outposthq/searchjs.git"
   },
   "files": [
-    "style.css"
+    "index.css"
   ],
   "license": "MIT",
   "exports": {
