@@ -11,5 +11,8 @@
   },
   "files": [
     "index.css"
-  ]
+  ],
+  "publishConfig": {
+    "access": "public"
+  }
 }
