@@ -1,16 +1,16 @@
 {
   "name": "searchjs",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "build": "pnpm run -r build",
-    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "changeset": "changeset",
-    "version": "changeset version",
-    "version:dev": "changeset version --snapshot dev",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "release": "changeset publish",
     "release:dev": "changeset publish --tag dev",
-    "release": "changeset publish"
+    "version": "changeset version",
+    "version:dev": "changeset version --snapshot dev"
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.0.4",
