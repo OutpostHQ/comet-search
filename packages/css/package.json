@@ -5,11 +5,11 @@
     "type": "git",
     "url": "https://github.com/outposthq/searchjs.git"
   },
-  "files": [
-    "style.css"
-  ],
   "license": "MIT",
   "exports": {
     ".": "./index.css"
-  }
+  },
+  "files": [
+    "index.css"
+  ]
 }
